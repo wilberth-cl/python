@@ -12,6 +12,10 @@ class Pizza():
 		self._nombre = nombre
 		self._precio = precio
 
+	def atributos(self):
+		print("Tamaño/Nombre: "+self._size+' '+self._nombre)
+		print("Precio: ", self._precio)
+
 	@property
 	def size(self):
 		return self._size
@@ -39,6 +43,10 @@ class Especialidad(Pizza):
 		super().__init__(size, nombre, precio)
 		self._ingredientes = ingredientes
 
+	def atributos(self):
+		super().atributos()
+		print("Ingredientes: ", self._ingredientes)
+
 	@property
 	def ingredientes(self):
 		return self._ingredientes;
@@ -64,3 +72,7 @@ print()
 print("Tamaño/Nombre: "+miEspecialidad.size+' '+miEspecialidad.nombre)
 print("Precio: $"+miEspecialidad.precio)
 print("Ingredientes: "+miEspecialidad.ingredientes)
+
+print()
+
+miEspecialidad.atributos()
