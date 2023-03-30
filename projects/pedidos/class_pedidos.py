@@ -4,10 +4,11 @@ from operator import itemgetter
 ###
 class Pedido():
     #constructor
-    def __init__(self, numpedido=0, articulo=''):
+    def __init__(self, numpedido=0, articulo='', pedidos=0):
         #atributos de clase, parametros
         self.numpedido = numpedido
         self.articulo = articulo
+        self.pedidos = self.numero_filas_db()
 
     def mensaje_inicio(self):
         return print("\n==== Bienvenido a Pedido ====\n")
@@ -52,15 +53,16 @@ class Pedido():
         self.show_pedidos(lista_filas)
 
     def create_pedido(self):
-        num_pedido = self.numero_filas_db()+1
+        num_pedido = self.pedidos+1
         print("\n===== Nuevo Pedido =====")
         print(f"Pedido aprox => {num_pedido}")
         articulo = input("Artículo => ").lower()
         with open('pedidosdb.txt','a') as archivo:
-            archivo.write(f"{num_pedido}-{articulo}\n")
+            nueva_fila = str(f"{num_pedido}-{articulo}\n")
+            archivo.write(nueva_fila)
         print('')
 
-    # en cuanta, datatype de la primera columna:
+    # en cuenta, datatype de la primera columna:
     # si es, int solo buscara valores int
     # si es, str solo buscara valores str
     def search(self):
